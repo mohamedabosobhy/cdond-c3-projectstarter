@@ -137,7 +137,9 @@ jobs:
             npm install
             npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
+      -  notify_slack_on_fail
 #   deploy-infrastructure:
 #     docker:
 #       # Docker image here that supports AWS CLI
