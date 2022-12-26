@@ -119,6 +119,8 @@ jobs:
           command: |
             cd frontend 
             npm install
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
       -  notify_slack_on_fail
   scan-backend:
@@ -133,6 +135,8 @@ jobs:
           command: |
             cd backend
             npm install
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
 #   deploy-infrastructure:
 #     docker:
