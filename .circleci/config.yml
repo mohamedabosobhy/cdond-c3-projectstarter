@@ -107,7 +107,7 @@ jobs:
             npm run test
       - notify_slack_on_fail
             
-scan-frontend:
+  scan-frontend:
     docker:
       - image: circleci/node:13.8.0
     steps:
@@ -121,7 +121,7 @@ scan-frontend:
             npm install
             npm audit --audit-level=critical
       -  notify_slack_on_fail
-scan-backend:
+  scan-backend:
     docker:
       - image: circleci/node:13.8.0
     steps:
