@@ -305,6 +305,7 @@ jobs:
       - checkout
       - install_aws_cli
       - install_ansible
+      - install-node
       - restore_cache:
           keys: [backend-build]
       - attach_workspace:
