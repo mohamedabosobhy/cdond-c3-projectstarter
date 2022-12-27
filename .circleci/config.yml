@@ -34,7 +34,7 @@ commands:
             echo "Destroying environment: <<parameters.workflow_id>> "
             aws cloudformation delete-stack --stack-name udacityproject3-backend-<<parameters.workflow_id>>
             aws cloudformation delete-stack --stack-name udacityproject3-frontend-<<parameters.workflow_id>>
-
+      - notify_slack_on_fail
 #   revert-migrations:
 #     description: Revert the last migration if successfully run in the current workflow.
 #     parameters:
