@@ -164,7 +164,6 @@ jobs:
       - run:
           name: Ensure back-end infrastructure exists
           command: |
-            aws s3 ls
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --tags project=project3 \
@@ -191,7 +190,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-         
+      - destroy-environment     
 
 #   configure-infrastructure:
 #     docker:
