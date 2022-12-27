@@ -11,6 +11,24 @@ commands:
           channel: udcity_project3
           template: basic_fail_1
 
+  install_ansible:
+      steps:
+      - run: 
+          name : install ansible 
+          command: |
+            python3 -m pip install --user ansible
+
+  install-node:
+    description: Install Node.js 13.8.0
+    steps:
+      - run:
+          name: Install Node.js 13.8.0
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+            sudo apt install -y nodejs
+            sudo npm install --global n
+            sudo n 13.8.0
+
   install_aws_cli:
     steps: 
       - run:
@@ -34,6 +52,7 @@ commands:
             echo "Destroying environment: <<parameters.workflow_id>> "
             aws cloudformation delete-stack --stack-name udacityproject3-backend-<<parameters.workflow_id>>
             aws cloudformation delete-stack --stack-name udacityproject3-frontend-<<parameters.workflow_id>>
+  
      
 #   revert-migrations:
 #     description: Revert the last migration if successfully run in the current workflow.
@@ -192,24 +211,23 @@ jobs:
       - destroy-environment
         
 
-#   configure-infrastructure:
-#     docker:
-#       # Docker image here that supports Ansible
-#     steps:
-#       # Checkout code from git
-#       # Add ssh keys with fingerprint
-#       # attach workspace
-#       - run:
-#           name: Install dependencies
-#           command: |
-#             # Your code here
-#             exit 1
-#       - run:
-#           name: Configure server
-#           command: |
-#             # Your code here
-#             exit 1
-#       # Here's where you will add some code to rollback on failure      
+  configure-infrastructure:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - install_ansible
+      - add_ssh_keys:
+          fingerprints: ["18:f8:28:48:e6:e0:c5:58:85:fc:fd:d9:6c:ae:b3:c6"] 
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            cat inventory.txt
+            ansible-playbook -i inventory.txt configure-server.yml
+      - destroy_environment      
 
 #   run-migrations:
 #     docker:
