@@ -33,7 +33,6 @@ commands:
           command: |
             echo "Destroying environment: <<parameters.workflow_id>> "
             aws cloudformation delete-stack --stack-name udacitypro3-backend-<<parameters.workflow_id>>
-            aws s3 rm s3://udacitypro3-<<parameters.workflow_id>> --recursive
             aws cloudformation delete-stack --stack-name udacitypro3-frontend-<<parameters.workflow_id>>
 
 #   revert-migrations:
@@ -190,8 +189,9 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
+      - notify_slack_on_fail   
       - destroy-environment
-      - notify_slack_on_fail     
+        
 
 #   configure-infrastructure:
 #     docker:
