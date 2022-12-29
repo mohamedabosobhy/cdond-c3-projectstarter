@@ -155,7 +155,9 @@ jobs:
       - run:
           name: scan forntend dependencies
           command: |
-            cd frontend 
+            cd frontend
+            npm update minimist 
+            npm update loader-utils
             npm install
             npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
