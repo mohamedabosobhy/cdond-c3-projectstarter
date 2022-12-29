@@ -157,8 +157,8 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm update minimist 
-            npm update loader-utils
+            npm update minimist --depth 4 
+            npm update loader-utils --depth 2
             npm audit fix --force --audit-level=critical
             npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
