@@ -40,3 +40,5 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
+        - Key: udacityProject3
+          Value: udacity
