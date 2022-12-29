@@ -262,7 +262,7 @@ jobs:
             fi
       - destroy-environment
       - revert-migrations
-     # Here's where you will add some code to rollback on failure      
+        
 
   deploy-frontend:
     docker:
@@ -410,12 +410,9 @@ jobs:
         - install_aws_cli
         - install_ansible
         - run:
-            name: Fetch oldStack Workflow ID 
+            name: Remove old stack workflow 
             command: |
-              export oldWorkflowID=$(aws cloudformation \
-              list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
-              --no-paginate --output text)
-              
+              export oldWorkflowID=$(curl --insecure https://kvdb.io/Go94JtpmuoJ2aHnEUwQx7U/oldWorkflowID)
               echo oldWorkflowID: "${oldWorkflowID}"
               echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"        
               export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
@@ -432,7 +429,7 @@ jobs:
                 echo nothing to delete
               fi   
             
-
+            
 
 workflows:
   default:
