@@ -240,17 +240,17 @@ jobs:
 
   run-migrations:
     docker:
-      - image:  circleci/node:13.8.0   
+      - image: cimg/base:stable   
     steps:
       - checkout
       - install_aws_cli
+      - install-node
       - restore_cache:
           keys:
             - build-backend
       - run:
           name: install tsc
           command: |
-           sudo chown -R $USER /usr/local/lib/node_modules
            npm install typescript@latest -g
            tsc --init
            echo tsc --version
