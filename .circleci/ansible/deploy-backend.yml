@@ -18,6 +18,7 @@
     - TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
     - TYPEORM_MIGRATIONS: "/migrations/*.ts"
     - TYPEORM_MIGRATIONS_DIR: "./migrations"
+    - NODE_ENV: "{{ lookup('env', 'NODE_ENV')}}"
 
 
 
