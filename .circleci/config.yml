@@ -255,6 +255,12 @@ jobs:
             npm run build
             npm run migrations > migrations_dump.txt
       - run:
+          name: install tsc
+          command: |
+           npm install typescript@latest -g
+           tsc --init
+           echo tsc --version
+      - run:
           name: Send migration results to kvdb
           command: |
             # Your code here
@@ -411,7 +417,7 @@ jobs:
         - checkout
         - install_aws_cli
         - install_ansible
-        
+
         - run:
             name: Remove old stack workflow 
             command: |
