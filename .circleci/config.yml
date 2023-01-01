@@ -105,6 +105,7 @@ jobs:
       - run:
           name: install tsc
           command: |
+           echo "$USER"
            npm install typescript@latest -g
            tsc --init
            echo tsc --version
