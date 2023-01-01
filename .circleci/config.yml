@@ -106,9 +106,9 @@ jobs:
           name: install tsc
           command: |
            sudo chown -R circleci:circleci /usr/local/lib/node_modules
-           sudo chown -R circleci:circleci ~/.npm
            
-           npm install typescript@latest -g
+           
+           sudo npm install -g typescript
            tsc --init
            echo tsc --version
       - restore_cache:
