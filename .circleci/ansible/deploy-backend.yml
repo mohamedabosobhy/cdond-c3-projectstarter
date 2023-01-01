@@ -9,6 +9,8 @@
     - ansible_host_key_checking: false
     - ansible_stdout_callback: yaml
   environment:
+  
+    - NODE_ENV: production
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"
     - TYPEORM_ENTITIES: "./modules/domain/**/*.entity.js"
     - TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
@@ -18,7 +20,7 @@
     - TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
     - TYPEORM_MIGRATIONS: "/migrations/*.ts"
     - TYPEORM_MIGRATIONS_DIR: "./migrations"
-    - NODE_ENV: "{{ lookup('env', 'NODE_ENV')}}"
+    
 
 
 
