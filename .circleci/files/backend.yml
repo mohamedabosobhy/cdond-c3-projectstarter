@@ -43,6 +43,7 @@ Resources:
         - Key: udacityProject3
           Value: udacity
           
+          
   EIP:
     Type: AWS::EC2::EIP
     Properties:
