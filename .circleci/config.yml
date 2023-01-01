@@ -411,6 +411,7 @@ jobs:
         - checkout
         - install_aws_cli
         - install_ansible
+        
         - run:
             name: Remove old stack workflow 
             command: |
