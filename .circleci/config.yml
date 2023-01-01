@@ -248,18 +248,19 @@ jobs:
           keys:
             - build-backend
       - run:
+          name: install tsc
+          command: |
+           npm install typescript@latest -g
+           tsc --init
+           echo tsc --version
+      - run:
           name: Run migrations
           command: |
             cd backend
             npm i
             npm run build
             npm run migrations > migrations_dump.txt
-      - run:
-          name: install tsc
-          command: |
-           npm install typescript@latest -g
-           tsc --init
-           echo tsc --version
+
       - run:
           name: Send migration results to kvdb
           command: |
@@ -322,6 +323,12 @@ jobs:
           at: ~/
       - add_ssh_keys:
           fingerprints: ["18:f8:28:48:e6:e0:c5:58:85:fc:fd:d9:6c:ae:b3:c6"] 
+      - run:
+          name: install tsc
+          command: |
+           npm install typescript@latest -g
+           tsc --init
+           echo tsc --version
       - run:
           name: Package Backend
           command: |
