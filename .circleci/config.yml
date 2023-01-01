@@ -102,6 +102,12 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
+      - run:
+          name: install tsc
+          command: |
+           npm install typescript@latest -g
+           tsc --init
+           echo tsc --version
       - restore_cache:
           keys: [backend-build]
       - run:
