@@ -238,6 +238,7 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment      
 
+
   run-migrations:
     docker:
       - image: cimg/base:stable   
@@ -254,6 +255,7 @@ jobs:
            sudo npm install -g typescript
            tsc --init
            echo tsc --version
+
       - run:
           name: Run migrations
           command: |
