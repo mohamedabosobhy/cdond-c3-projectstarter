@@ -249,13 +249,7 @@ jobs:
       - restore_cache:
           keys:
             - build-backend
-      - run:
-          name: install tsc
-          command: |
-           sudo npm install -g typescript
-           tsc --init
-           echo tsc --version
-
+      
       - run:
           name: Run migrations
           command: |
@@ -326,12 +320,7 @@ jobs:
           at: ~/
       - add_ssh_keys:
           fingerprints: ["18:f8:28:48:e6:e0:c5:58:85:fc:fd:d9:6c:ae:b3:c6"] 
-      - run:
-          name: install tsc
-          command: |
-           sudo npm install -g typescript
-           tsc --init
-           echo tsc --version
+      
       - run:
           name: Package Backend
           command: |
